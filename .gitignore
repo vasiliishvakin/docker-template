@@ -1,0 +1,6 @@
+.env
+compose.override.yml
+src/*/vendor
+src/*/composer.lock
+mysql_db
+cache
