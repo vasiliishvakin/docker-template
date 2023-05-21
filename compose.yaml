@@ -10,7 +10,7 @@ services:
     ports:
       - "127.0.0.1:80:80"
     volumes:
-      - "./src:/app"
+      - "./app:/app"
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -18,7 +18,7 @@ services:
     image: vasiliishavkin/php:8.2-fpm-development
     container_name: php
     volumes:
-      - "./src:/app"
+      - "./app:/app"
       - "./cache/composer:/root/.cache/composer"
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -30,7 +30,7 @@ services:
     build:
       context: ./python
     volumes:
-      - "./src:/app"
+      - "./app:/app"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles:
@@ -57,10 +57,11 @@ services:
     ports:
       - "127.0.0.1:5173:5173"
     volumes:
-      - "./src:/app"
+      - "./app:/app"
     working_dir: "/app"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    command: npm start
     profiles:
       - donotstart
 
