@@ -15,7 +15,7 @@ services:
       - "host.docker.internal:host-gateway"
 
   php:
-    image: vasiliishavkin/php:8.2-fpm-development
+    image: vasiliishavkin/php:5.6-fpm-development
     container_name: php
     volumes:
       - "./app:/app"
