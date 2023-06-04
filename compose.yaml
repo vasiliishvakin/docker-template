@@ -11,6 +11,8 @@ services:
       - "127.0.0.1:80:80"
     volumes:
       - "./app:/app"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/conf.d:/etc/nginx/conf.d"
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -19,6 +21,7 @@ services:
     container_name: php
     volumes:
       - "./app:/app"
+      - "./php/conf.d/php.local.ini:/usr/local/etc/php/conf.d/php.local.ini"
       - "./cache/composer:/root/.cache/composer"
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -37,12 +40,13 @@ services:
       - donotstart
 
   mysql:
-    image: mysql:8
+    image: mariadb:latest
     container_name: mysql
     ports:
       - "127.0.0.1:3306:3306"
     volumes:
       - "./mysql_db:/var/lib/mysql"
+      - "./mysql/conf.d:/etc/mysql/conf.d"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
