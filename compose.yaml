@@ -10,7 +10,7 @@ services:
     ports:
       - "127.0.0.1:80:80"
     volumes:
-      - "./app:/app"
+      - "../app:/app"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
       - "./nginx/conf.d:/etc/nginx/conf.d"
     extra_hosts:
@@ -20,7 +20,7 @@ services:
     image: vasiliishavkin/php:8.2-fpm-development
     container_name: php
     volumes:
-      - "./app:/app"
+      - "../app:/app"
       - "./php/conf.d/php.local.ini:/usr/local/etc/php/conf.d/php.local.ini"
       - "./cache/composer:/root/.cache/composer"
     extra_hosts:
@@ -33,7 +33,7 @@ services:
     build:
       context: ./python
     volumes:
-      - "./app:/app"
+      - "../app:/app"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles:
@@ -61,7 +61,7 @@ services:
     ports:
       - "127.0.0.1:5173:5173"
     volumes:
-      - "./app:/app"
+      - "../app:/app"
     working_dir: "/app"
     extra_hosts:
       - "host.docker.internal:host-gateway"

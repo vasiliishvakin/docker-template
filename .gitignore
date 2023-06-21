@@ -5,9 +5,6 @@ nginx/conf.d
 php/conf.d
 mysql/conf.d
 
-app/*/vendor
-app/*/node_modules
-
 mysql_db
 cache
 
