@@ -3,10 +3,6 @@ services:
   nginx:
     image: nginx:latest
     build: ./nginx
-    depends_on:
-      - php
-      - phpmyadmin
-      - mailhog
     ports:
       - "127.0.0.1:80:80"
     volumes:
@@ -34,10 +30,9 @@ services:
       context: ./python
     volumes:
       - "../app:/app"
+      - "/root/.vscode-server/extensions:/root/.vscode-server/extensions"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    profiles:
-      - donotstart
 
   mysql:
     image: mariadb:latest
@@ -82,6 +77,8 @@ services:
       PMA_HOST: mysql
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    profiles:
+      - donotstart
 
   mailhog:
     image: mailhog/mailhog:latest
@@ -92,5 +89,7 @@ services:
       - "127.0.0.1:8025:8025" # web ui
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    profiles:
+      - donotstart
 networks:
   web-development:

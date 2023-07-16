@@ -4,7 +4,9 @@ FROM python:3-bullseye
 WORKDIR /app
 
 # copy the dependencies file to the working directory
-#COPY requirements.txt .
+COPY requirements.txt .
 
 # install dependencies
-#RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip -r requirements.txt
+
+CMD ["python", "-m", "http.server", "8000"]
